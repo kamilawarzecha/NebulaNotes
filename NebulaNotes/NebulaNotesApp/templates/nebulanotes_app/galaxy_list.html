@@ -1,0 +1,12 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+
+{% block content %}
+    <h3>The list of galaxies: </h3>
+    <ul>
+        {% for galaxy in galaxies %}
+        <li> {{ galaxy.name }}</li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

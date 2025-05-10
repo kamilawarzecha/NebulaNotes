@@ -1,0 +1,12 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+
+{% block content %}
+    <h3>The list of astronomical object types: </h3>
+    <ul>
+        {% for object_type in object_types %}
+        <li> {{ object_type.name }}</li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

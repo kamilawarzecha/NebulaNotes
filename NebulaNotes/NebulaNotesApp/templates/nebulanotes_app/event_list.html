@@ -1,0 +1,12 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+
+{% block content %}
+    <h3>The list of events: </h3>
+    <ul>
+        {% for event in events %}
+        <li> {{ event.name }}</li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

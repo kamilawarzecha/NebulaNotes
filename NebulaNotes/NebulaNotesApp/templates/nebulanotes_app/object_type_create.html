@@ -1,0 +1,18 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<h1>Add a new object type</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="send">
+</form>
+
+{% endblock %}
