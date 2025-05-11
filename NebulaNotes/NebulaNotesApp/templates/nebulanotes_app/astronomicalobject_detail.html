@@ -11,6 +11,12 @@
 <p>{{ object.galaxy }} </p>
 <h2>Distance from the Earth in light years: </h2>
 <p>{{ object.distance_from_earth }} </p>
-
+{% if object.image %}
+<img src="{{ object.image.url }}" alt="Image of {{ object.name }}">
+{% endif %}
+{% if object.discovery_year %}
+<h2>Discovery year:</h2>
+<p>{{ object.discovery_year }} </p>
+{% endif %}
 
 {% endblock %}

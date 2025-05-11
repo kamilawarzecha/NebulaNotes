@@ -15,7 +15,7 @@ class UserLoginForm(forms.Form):
 class ObjectForm(forms.ModelForm):
     class Meta:
         model = AstronomicalObject
-        fields = ['name', 'type', 'distance_from_earth','description', 'image', 'discovery_date', 'galaxy']
+        fields = ['name', 'type', 'distance_from_earth','description', 'image', 'discovery_year', 'galaxy']
 
 
 class ObjectTypeForm(forms.ModelForm):
