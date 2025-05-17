@@ -5,8 +5,14 @@
     <h3>The list of astronomical objects: </h3>
     <ul>
         {% for object in objects %}
-        <li> {{ object.name }}</li>
+        <li>
+            <a href="{% url 'object-detail' object.id %}">{{ object.name }}</a>
+        </li>
 
         {% endfor %}
     </ul>
+
+<h4>
+    <a href="{% url 'create-object' %}">Add a new object</a>
+</h4>
 {% endblock %}

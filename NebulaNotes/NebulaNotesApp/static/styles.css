@@ -1,0 +1,24 @@
+.user-status {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.user-status a {
+    display: block;
+    margin-top: 5px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+}

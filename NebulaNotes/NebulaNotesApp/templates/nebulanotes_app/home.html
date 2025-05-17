@@ -1,6 +1,15 @@
 {% extends 'nebulanotes_app/base.html' %}
 
 {% block content %}
-Welcome to NebulaNotes!
+<h2>Welcome to NebulaNotes!</h2>
 This website is under construction.
+
+<h3>Go to:</h3>
+<ul>
+    <li><a href="{% url 'list-observations' %}">My notes</a></li>
+    <li><a href="{% url 'list-objects' %}">List of astronomical objects</a></li>
+    <li><a href="{% url 'list-events' %}">List of events</a></li>
+    <li><a href="{% url 'list-galaxies' %}">List of galaxies</a></li>
+    <li><a href="{% url 'list-object-types' %}">List of object types</a></li>
+</ul>
 {% endblock %}

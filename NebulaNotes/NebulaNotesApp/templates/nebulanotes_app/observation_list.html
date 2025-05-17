@@ -1,0 +1,27 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+
+{% block content %}
+    <h3>The list of observations: </h3>
+    <ul>
+        {% for observation in observations %}
+        <li>
+            observer: {{ observation.user }},
+            date: {{ observation.observation_date }},
+            notes: {{ observation.notes }},
+            {% if observation.astronomical_object %}
+            object: {{ observation.astronomical_object.name }},
+            {% endif %}
+            {% if observation.event %}
+            event: {{ observation.event.name }}
+            {% endif %}
+
+        </li>
+
+        {% endfor %}
+    </ul>
+
+<h4>
+
+</h4>
+{% endblock %}

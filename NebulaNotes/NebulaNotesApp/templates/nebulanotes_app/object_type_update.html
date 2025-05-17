@@ -5,7 +5,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save Changes</button>
-    <a href="{% url 'list-astronomical-object-types' %}">Cancel</a>
+    <a href="{% url 'list-object-types' %}">Cancel</a>
 </form>
 
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+{% block content %}
+<h2>Date: {{ observation.observation_date }}</h2>
+<h2>Notes: {{ observation.notes }}</h2>
+{% if observation.astronomical_object %}
+<h2>Object: {{ observation.astronomical_object.name }} </h2>
+{% endif %}
+{% if observation.event %}
+<h2>Event: {{ observation.event.name }}</h2>
+{% endif %}
+{% if observation.astronomical_object %}
+<h2>Galaxy: {{ observation.astronomical_object.galaxy }}</h2>
+{% endif %}
+<h2>Location: {{ observation.location }}</h2>
+<h2>Note added by: {{ observation.user }}</h2>
+<h5><a href="{% url 'observation-update' observation.id %}">Edit</a> </h5>
+<h5><a href="{% url 'observation-delete' observation.id %}">Delete</a> </h5>
+<h5><a href="{% url 'list-observations' %}">See the list of observations</a></h5>
+{% endblock %}

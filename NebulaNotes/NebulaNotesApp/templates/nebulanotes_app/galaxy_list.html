@@ -5,8 +5,11 @@
     <h3>The list of galaxies: </h3>
     <ul>
         {% for galaxy in galaxies %}
-        <li> {{ galaxy.name }}</li>
+        <li>
+            <a href="{% url 'galaxy-detail' galaxy.id %}">{{ galaxy.name }}</a>
+        </li>
 
         {% endfor %}
     </ul>
+<h5><a href="{% url 'create-galaxy' %}">Add a new galaxy</a></h5>
 {% endblock %}
