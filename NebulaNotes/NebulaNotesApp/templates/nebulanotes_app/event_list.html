@@ -1,12 +1,19 @@
-{% extends 'nebulanotes_app/base.html' %}
+{% extends 'nebulanotes_app/list_template.html' %}
 
 
 {% block content %}
-    <h3>The list of events: </h3>
-    <ul>
-        {% for event in events %}
-        <li> {{ event.name }}</li>
-
-        {% endfor %}
-    </ul>
+    {% with title="Astronomical Events 📅" objects=events %}
+        <h2>{{ title }}</h2>
+        <ul class="list-group">
+            {% for event in objects %}
+                <li class="list-group-item">
+                    <strong>{{ event.name }}</strong> – {{ event.date }}
+                    <a href="{% url 'event-detail' event.id %}" class="btn btn-primary btn-sm">View</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endwith %}
+<h5>
+    <a href="{% url 'create-event' %}" class="btn btn-success">Add a new event</a>
+</h5>
 {% endblock %}

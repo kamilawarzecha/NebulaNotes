@@ -4,8 +4,8 @@
 <form action="" method="POST">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="send">
+    <input type="submit" value="Add">
 </form>
-<h5>Missing object? <a href="{% url 'create-object' %}">Add it here</a></h5>
-<h5>Missing event? <a href="{% url 'create-event' %}">Add it here</a></h5>
+<h5>Missing object? <a href="{% url 'create-object' %}" class="btn btn-success">Add it here</a></h5>
+<h5>Missing event? <a href="{% url 'create-event' %}" class="btn btn-success">Add it here</a></h5>
 {% endblock %}

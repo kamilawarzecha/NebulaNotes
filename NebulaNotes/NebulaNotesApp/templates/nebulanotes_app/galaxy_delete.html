@@ -4,8 +4,8 @@
 <h2>Are you sure you want to delete "{{ galaxy.name }}"?</h2>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
-    <a href="{% url 'list-galaxies' %}">Cancel</a>
+    <button type="submit" class="btn btn-secondary">Yes, delete</button>
+    <a href="{% url 'list-galaxies' %}" class="btn btn-secondary">Cancel</a>
 </form>
 
 

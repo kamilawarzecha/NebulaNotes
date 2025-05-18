@@ -1,15 +1,27 @@
 {% extends 'nebulanotes_app/base.html' %}
 
 {% block content %}
-<h2>Welcome to NebulaNotes!</h2>
-This website is under construction.
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Welcome to NebulaNotes! ✨ </h1>
+    <p class="lead">Your personal space for astronomical observations.</p>
 
-<h3>Go to:</h3>
-<ul>
-    <li><a href="{% url 'list-observations' %}">My notes</a></li>
-    <li><a href="{% url 'list-objects' %}">List of astronomical objects</a></li>
-    <li><a href="{% url 'list-events' %}">List of events</a></li>
-    <li><a href="{% url 'list-galaxies' %}">List of galaxies</a></li>
-    <li><a href="{% url 'list-object-types' %}">List of object types</a></li>
-</ul>
+<h3 class="mt-4">Explore:</h3>
+    <div class="list-group">
+        <a href="{% url 'list-observations' %}" class="list-group-item list-group-item-action">
+            My notes 🔭
+        </a>
+        <a href="{% url 'list-objects' %}" class="list-group-item list-group-item-action">
+            List of astronomical objects 🌠
+        </a>
+        <a href="{% url 'list-events' %}" class="list-group-item list-group-item-action">
+            List of events 📅
+        </a>
+        <a href="{% url 'list-galaxies' %}" class="list-group-item list-group-item-action">
+            List of galaxies 🌌
+        </a>
+        <a href="{% url 'list-object-types' %}" class="list-group-item list-group-item-action">
+            List of object types 🪐
+        </a>
+    </div>
+</div>
 {% endblock %}

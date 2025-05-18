@@ -14,7 +14,7 @@
 {% endif %}
 <h2>Location: {{ observation.location }}</h2>
 <h2>Note added by: {{ observation.user }}</h2>
-<h5><a href="{% url 'observation-update' observation.id %}">Edit</a> </h5>
-<h5><a href="{% url 'observation-delete' observation.id %}">Delete</a> </h5>
-<h5><a href="{% url 'list-observations' %}">See the list of observations</a></h5>
+<h5><a href="{% url 'observation-update' observation.id %}" class="btn btn-success">Edit</a> </h5>
+<h5><a href="{% url 'observation-delete' observation.id %}" class="btn btn-success">Delete</a> </h5>
+<h5><a href="{% url 'list-observations' %}" class="btn btn-success">See the list of observations</a></h5>
 {% endblock %}

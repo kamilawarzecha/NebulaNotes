@@ -4,6 +4,6 @@
 <h1>Type: {{ object_type.name }}</h1>
 <ul>List of objects: </ul>
 
-<h5><a href="{% url 'object-type-update' object_type.id %}">Edit</a> </h5>
-<h5><a href="{% url 'object-type-delete' object_type.id %}">Delete</a> </h5>
+<h5><a href="{% url 'object-type-update' object_type.id %}" class="btn btn-success">Edit</a> </h5>
+<h5><a href="{% url 'object-type-delete' object_type.id %}" class="btn btn-success">Delete</a> </h5>
 {% endblock %}

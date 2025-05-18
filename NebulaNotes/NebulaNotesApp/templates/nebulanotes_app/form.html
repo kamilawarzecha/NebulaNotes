@@ -1,7 +1,18 @@
 <form action="" method="POST" class="container mt-4">
     {% csrf_token %}
+        {% for field in form %}
     <div class="mb-3">
-        {{ form.as_p }}
+        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+        {% if field.name == "observation_date" %}
+                <input type="datetime-local" class="form-control" name="observation_date">
+            {% else %}
+                {{ field }}
+            {% endif %}
+        {% if field.errors %}
+            <div class="text-danger">{{ field.errors }}</div>
+        {% endif %}
     </div>
-    <button type="submit" class="btn btn-primary">Send</button>
+{% endfor %}
+
+    <button type="submit" class="btn btn-primary">Add</button>
 </form>

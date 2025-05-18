@@ -1,27 +1,34 @@
-{% extends 'nebulanotes_app/base.html' %}
+{% extends 'nebulanotes_app/list_template.html' %}
 
 
 {% block content %}
-    <h3>The list of observations: </h3>
-    <ul>
-        {% for observation in observations %}
-        <li>
-            observer: {{ observation.user }},
-            date: {{ observation.observation_date }},
-            notes: {{ observation.notes }},
-            {% if observation.astronomical_object %}
-            object: {{ observation.astronomical_object.name }},
-            {% endif %}
-            {% if observation.event %}
-            event: {{ observation.event.name }}
-            {% endif %}
+    {% with title="Notes: List of observations 🔭" objects=observations %}
+        <h2>{{ title }}</h2>
+        <ul class="list-group">
+   {% for observation in objects %}
+    <li class="list-group-item">
+        <h5 class="mb-2 text-primary">{{ observation.user }}</h5>
+        <p class="mb-1"><strong>Date:</strong> {{ observation.observation_date }}</p>
+        <p><strong>Notes:</strong> {{ observation.notes }}</p>
 
-        </li>
+        {% if observation.astronomical_object %}
+            <p><strong>Observed Object:</strong> {{ observation.astronomical_object.name }}</p>
+        {% endif %}
 
-        {% endfor %}
-    </ul>
+        {% if observation.event %}
+            <p><strong>Related Event:</strong> {{ observation.event.name }}</p>
+        {% endif %}
 
-<h4>
+        {% if observation.location %}
+            <p><strong>Location:</strong> {{ observation.location }}</p>
+        {% endif %}
 
-</h4>
+        <a href="{% url 'event-detail' observation.id %}" class="btn btn-primary btn-sm">View</a>
+    </li>
+{% endfor %}
+        </ul>
+    {% endwith %}
+<h5><a href="{% url 'create-observation' %}" class="btn btn-success">Add a new observation</a> </h5>
+
 {% endblock %}
+

@@ -7,7 +7,7 @@
 <p>{{ galaxy.type }} </p>
 <h2>Description: </h2>
 <p>{{ galaxy.description }} </p>
-<h5><a href="{% url 'galaxy-update' galaxy.id %}">Edit</a> </h5>
-<h5><a href="{% url 'galaxy-delete' galaxy.id %}">Delete</a> </h5>
+<h5><a href="{% url 'galaxy-update' galaxy.id %}" class="btn btn-success">Edit</a> </h5>
+<h5><a href="{% url 'galaxy-delete' galaxy.id %}" class="btn btn-success">Delete</a> </h5>
 
 {% endblock %}

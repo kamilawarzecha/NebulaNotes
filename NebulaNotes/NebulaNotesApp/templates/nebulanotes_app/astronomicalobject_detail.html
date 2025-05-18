@@ -19,8 +19,8 @@
 <p>{{ object.discovery_year }} </p>
 {% endif %}
 
-<h5><a href="{% url 'object-update' object.id %}">Edit</a> </h5>
-<h5><a href="{% url 'object-delete' object.id %}">Delete</a> </h5>
-<h5>Add notes</h5>
+<h5><a href="{% url 'object-update' object.id %}" class="btn btn-success">Edit</a> </h5>
+<h5><a href="{% url 'object-delete' object.id %}" class="btn btn-success">Delete</a> </h5>
+<h5><a href="{% url 'create-observation' %}" class="btn btn-success">Add notes</a> </h5>
 
 {% endblock %}

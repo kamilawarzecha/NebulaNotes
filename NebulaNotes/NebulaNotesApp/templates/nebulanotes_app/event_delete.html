@@ -4,8 +4,8 @@
 <h2>Are you sure you want to delete "{{ event.name }}"?</h2>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
-    <a href="{% url 'list-events' %}">Cancel</a>
+    <button type="submit" class="btn btn-secondary">Yes, delete</button>
+    <a href="{% url 'list-events' %}" class="btn btn-secondary">Cancel</a>
 </form>
 
 

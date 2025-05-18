@@ -1,0 +1,14 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <ul class="list-group">
+        {% for item in objects %}
+            <li class="list-group-item">
+                <strong>{{ item.name }}</strong> – {{ item.description }}
+                <a href="{% url 'object-detail' item.id %}" class="btn btn-primary btn-sm">View details</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

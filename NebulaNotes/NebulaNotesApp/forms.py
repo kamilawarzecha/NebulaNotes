@@ -1,5 +1,6 @@
-from datetime import date
-from email.mime import image
+from datetime import date, datetime
+from django.utils.timezone import now
+
 
 from django import forms
 from django.core.exceptions import ValidationError
@@ -55,7 +56,17 @@ class EventForm(forms.ModelForm):
         fields = ['name', 'date', 'description', 'related_objects']
 
 
+def validate_past_date(value):
+    """Date validator to check if the date is in the past."""
+    if value > now():
+        raise ValidationError("You can't select a future date.")
+
 class ObservationForm(forms.ModelForm):
+    observation_date = forms.DateTimeField(
+    widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+    validators=[validate_past_date]
+    )
+
     class Meta:
         model = Observation
         fields = ['location', 'notes', 'astronomical_object', 'event', 'observation_date']

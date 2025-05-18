@@ -1,18 +1,11 @@
-{% extends 'nebulanotes_app/base.html' %}
-
+{% extends "nebulanotes_app/list_template.html" %}
 
 {% block content %}
-    <h3>The list of astronomical objects: </h3>
-    <ul>
-        {% for object in objects %}
-        <li>
-            <a href="{% url 'object-detail' object.id %}">{{ object.name }}</a>
-        </li>
+    {% with title="Astronomical Objects 🌠" objects=objects %}
+        {{ block.super }}
+    {% endwith %}
 
-        {% endfor %}
-    </ul>
-
-<h4>
-    <a href="{% url 'create-object' %}">Add a new object</a>
-</h4>
+<h5>
+    <a href="{% url 'create-object' %}" class="btn btn-success">Add a new object</a>
+</h5>
 {% endblock %}

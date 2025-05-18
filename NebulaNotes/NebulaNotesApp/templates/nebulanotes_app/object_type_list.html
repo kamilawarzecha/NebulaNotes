@@ -1,13 +1,17 @@
-{% extends 'nebulanotes_app/base.html' %}
+{% extends 'nebulanotes_app/list_template.html' %}
 
 
 {% block content %}
-    <h3>The list of astronomical object types: </h3>
-    <ul>
-        {% for object_type in object_types %}
-        <li> {{ object_type.name }}</li>
+    {% with title="Types of astronomical objects 🪐" objects=object_types %}
+        <h2>{{ title }}</h2>
+        <ul class="list-group">
+            {% for object_type in objects %}
+                <li class="list-group-item">
+                    <strong>{{ object_type.name }}</strong>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endwith %}
 
-        {% endfor %}
-    </ul>
-<h5><a href="{% url 'create-object-type' %}">Add a new type</a></h5>
+<h5><a href="{% url 'create-object-type' %}" class="btn btn-success">Add a new type</a></h5>
 {% endblock %}

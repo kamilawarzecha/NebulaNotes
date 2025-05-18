@@ -61,26 +61,26 @@ class Event(models.Model):
         return f"{self.name} - {self.date}"
 
 
-class ObjectObservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    astronomical_object = models.ForeignKey(AstronomicalObject, on_delete=models.CASCADE)
-    observation_date = models.DateTimeField(auto_now_add=True)
-    location = models.CharField(max_length=255, blank=True)
-    notes = models.TextField(blank=True)
-
-    def __str__(self):
-        return f"Observation of  {self.astronomical_object.name} made by {self.user.username}"
-
-
-class EventObservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    observation_date = models.DateTimeField(auto_now_add=True)
-    location = models.CharField(max_length=255, blank=True)
-    notes = models.TextField(blank=True)
-
-    def __str__(self):
-        return f"Observation of {self.event.name} made by {self.user.username}"
+# class ObjectObservation(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     astronomical_object = models.ForeignKey(AstronomicalObject, on_delete=models.CASCADE)
+#     observation_date = models.DateTimeField(auto_now_add=True)
+#     location = models.CharField(max_length=255, blank=True)
+#     notes = models.TextField(blank=True)
+#
+#     def __str__(self):
+#         return f"Observation of  {self.astronomical_object.name} made by {self.user.username}"
+#
+#
+# class EventObservation(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+#     observation_date = models.DateTimeField(auto_now_add=True)
+#     location = models.CharField(max_length=255, blank=True)
+#     notes = models.TextField(blank=True)
+#
+#     def __str__(self):
+#         return f"Observation of {self.event.name} made by {self.user.username}"
 
 
 class Observation(models.Model):

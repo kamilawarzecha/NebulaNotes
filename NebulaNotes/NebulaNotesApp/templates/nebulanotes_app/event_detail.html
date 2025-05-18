@@ -13,6 +13,6 @@
     <li> {{ related_object.name }}</li>
     {% endfor %}
 </ul>
-<h5><a href="{% url 'event-update' event.id %}">Edit</a> </h5>
-<h5><a href="{% url 'event-delete' event.id %}">Delete</a> </h5>
+<h5><a href="{% url 'event-update' event.id %}" class="btn btn-success" >Edit</a> </h5>
+<h5><a href="{% url 'event-delete' event.id %}" class="btn btn-success">Delete</a> </h5>
 {% endblock %}
