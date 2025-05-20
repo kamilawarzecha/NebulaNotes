@@ -1,11 +1,13 @@
-{% extends 'nebulanotes_app/list_template.html' %}
-
+{% extends 'nebulanotes_app/base.html' %}
 
 {% block content %}
-    {% with title="Galaxies 🌌" objects=galaxies %}
-        {{ block.super }}
-    {% endwith %}
-<h5>
-    <a href="{% url 'create-galaxy' %}" class="btn btn-success">Add a new galaxy</a>
-</h5>
+    <h2>{{ title }}</h2>
+    <ul class="list-group">
+        {% for galaxy in galaxies %}
+            <li class="list-group-item">
+                <strong>{{ galaxy.name }}</strong> – {{ galaxy.description }}
+                    <a href="{% url 'galaxy-detail' galaxy.id %}" class="btn btn-primary btn-sm">View details</a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -4,7 +4,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-
 .user-status {
     position: fixed;
     right: 20px;
@@ -32,7 +31,7 @@ body {
     width: 100%;
     background-color: #343a40;
     padding: 10px;
-    color: #ffffff;
+    color: #6f94c6;
     text-align: center;
 }
 
@@ -61,17 +60,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-.list-group-item {
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    background-color: #f8f9fa;
-    transition: 0.3s;
-}
-
-.list-group-item:hover {
-    background-color: #e9ecef;
-}
 
 .list-group-item {
     background-color: #f8f9fa;
@@ -96,7 +84,23 @@ h5 {
     transition: 0.3s ease-in-out;
 }
 
+.card:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+}
 
-.btn-primary {
+.card-text {
+    font-size: 23px;
+    line-height: 1.6;
+}
+
+.btn {
     margin-top: 5px;
 }
+
+.link {
+    font-size: 23px;
+    line-height: 1.6;
+    text-decoration: none;
+}
+

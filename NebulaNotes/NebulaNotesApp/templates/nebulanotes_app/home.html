@@ -24,4 +24,10 @@
         </a>
     </div>
 </div>
+
+    {% if not request.user.is_authenticated %}
+    <div>
+    <h5><a href=" {% url 'register' %}" class="link">No account? Register here!</a> </h5>
+    </div>
+    {%  endif %}
 {% endblock %}

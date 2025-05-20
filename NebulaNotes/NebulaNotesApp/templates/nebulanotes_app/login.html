@@ -3,5 +3,9 @@
 {% block content %}
 {% include 'nebulanotes_app/form.html' %}
 
-<h5><a href=" {% url 'register' %}">No account? Register here!</a> </h5>
+{% if not request.user.is_authenticated %}
+    <div>
+    <h5><a href=" {% url 'register' %}" class="link">No account? Register here!</a> </h5>
+    </div>
+    {%  endif %}
 {% endblock %}

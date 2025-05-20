@@ -1,13 +1,7 @@
-{% extends 'nebulanotes_app/base.html' %}
+{% extends 'nebulanotes_app/detail_template.html' %}
 
 {% block content %}
-<h1>Galaxy: </h1>
-<p>{{ galaxy.name }} </p>
-<h2>Type: </h2>
-<p>{{ galaxy.type }} </p>
-<h2>Description: </h2>
-<p>{{ galaxy.description }} </p>
-<h5><a href="{% url 'galaxy-update' galaxy.id %}" class="btn btn-success">Edit</a> </h5>
-<h5><a href="{% url 'galaxy-delete' galaxy.id %}" class="btn btn-success">Delete</a> </h5>
-
+    {% with title="Galaxy" update_url='galaxy-update' delete_url='galaxy-delete' %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock %}

@@ -1,9 +1,7 @@
-{% extends 'nebulanotes_app/base.html' %}
+{% extends 'nebulanotes_app/detail_template.html' %}
 
 {% block content %}
-<h1>Type: {{ object_type.name }}</h1>
-<ul>List of objects: </ul>
-
-<h5><a href="{% url 'object-type-update' object_type.id %}" class="btn btn-success">Edit</a> </h5>
-<h5><a href="{% url 'object-type-delete' object_type.id %}" class="btn btn-success">Delete</a> </h5>
+    {% with title="Object type" update_url='object-type-update' delete_url='object-type-delete' %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock %}

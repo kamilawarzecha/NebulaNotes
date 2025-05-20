@@ -23,7 +23,7 @@
             <p><strong>Location:</strong> {{ observation.location }}</p>
         {% endif %}
 
-        <a href="{% url 'event-detail' observation.id %}" class="btn btn-primary btn-sm">View</a>
+        <a href="{% url 'observation-detail' observation.id %}" class="btn btn-primary btn-sm">View</a>
     </li>
 {% endfor %}
         </ul>

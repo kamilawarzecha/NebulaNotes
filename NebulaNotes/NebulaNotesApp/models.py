@@ -12,7 +12,6 @@ class Galaxy(models.Model):
         ("Irregular", "Irregular"),
         ("Other", "Other")
     ]
-
     name = models.CharField(max_length=100, unique=True)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     description = models.TextField(blank=True)

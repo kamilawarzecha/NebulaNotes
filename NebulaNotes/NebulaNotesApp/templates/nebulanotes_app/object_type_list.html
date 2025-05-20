@@ -2,16 +2,17 @@
 
 
 {% block content %}
-    {% with title="Types of astronomical objects 🪐" objects=object_types %}
-        <h2>{{ title }}</h2>
-        <ul class="list-group">
-            {% for object_type in objects %}
-                <li class="list-group-item">
-                    <strong>{{ object_type.name }}</strong>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endwith %}
+    {% with title="Types of Astronomical Objects 🪐" objects=object_types %}
+    <h2>{{ title }}</h2>
+    <div class="list-group">
+        {% for object_type in objects %}
+            <a href="{% url 'object-type-detail' object_type.id %}" class="list-group-item list-group-item-action">
+                <strong>{{ object_type.name }}</strong>
+            </a>
+        {% endfor %}
+    </div>
+{% endwith %}
+
 
 <h5><a href="{% url 'create-object-type' %}" class="btn btn-success">Add a new type</a></h5>
 {% endblock %}

@@ -1,0 +1,138 @@
+{% extends 'nebulanotes_app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ title }}: {{ object.name }}</h1>
+
+   {% if object.image %}
+    <div class="text-center mt-3">
+        <img src="{{ object.image.url }}" alt="Image of {{ object.name }}" class="img-fluid rounded shadow">
+    </div>
+{% endif %}
+
+
+    {%  if object.description %}
+        <div class="card my-3">
+    <div class="card-body">
+        <h2 class="card-title">Description</h2>
+        <p class="card-text">{{ object.description }}</p>
+    </div>
+</div>
+    {% endif %}
+
+    {% if object.type %}
+        <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Type</h2>
+        <p class="card-text">{{ object.type }}</p>
+    </div>
+</div>
+    {% endif %}
+
+    {% if object.galaxy %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Galaxy</h2>
+        <p class="card-text">{{ object.galaxy }}</p>
+    </div>
+</div>
+    {% endif %}
+
+    {% if object.distance_from_earth %}
+        <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Distance from Earth</h2>
+        <p class="card-text">{{ object.distance_from_earth }} light years</p>
+    </div>
+</div>
+    {% endif %}
+
+    {% if object.discovery_year %}
+        <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Discovery year</h2>
+        <p class="card-text">{{ object.discovery_year }}</p>
+    </div>
+</div>
+    {% endif %}
+
+{% if object.date %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Date</h2>
+        <p class="card-text">{{ object.date }}</p>
+    </div>
+</div>
+    {% endif %}
+
+{% if object.related_objects.all %}
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="card-title">Related Objects</h2>
+            <div class="list-group">
+                {% for related_object in object.related_objects.all %}
+                    <a href="{% url 'object-detail' related_object.id %}" class="list-group-item list-group-item-action">
+                        {{ related_object.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+{% if object.observation_date %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Observation date</h2>
+        <p class="card-text">{{ object.observation_date }}</p>
+    </div>
+</div>
+    {% endif %}
+
+
+{% if object.notes %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Notes</h2>
+        <p class="card-text">{{ object.notes }}</p>
+    </div>
+</div>
+    {% endif %}
+
+
+{% if object.astronomical_object %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Observed Object</h2>
+        <p class="card-text">{{ object.astronomical_object }}</p>
+    </div>
+</div>
+    {% endif %}
+
+{% if object.event %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Observed Event</h2>
+        <p class="card-text">{{ object.event }}</p>
+    </div>
+</div>
+    {% endif %}
+
+{% if object.location %}
+       <div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">Location</h2>
+        <p class="card-text">{{ object.location }}</p>
+    </div>
+</div>
+    {% endif %}
+    <div class="mt-4">
+        <a href="{% url update_url object.id %}" class="btn btn-success">Edit</a>
+        <a href="{% url delete_url object.id %}" class="btn btn-danger">Delete</a>
+        {% if object != object_type %}
+        <a href="{% url 'create-observation' %}" class="btn btn-primary">Add notes</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
