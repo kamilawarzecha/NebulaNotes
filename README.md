@@ -1,4 +1,4 @@
-NebulaNotes ✨
+**NebulaNotes** ✨
 A web-based application for tracking astronomical observations, galaxies, and celestial events.
 
 Features 🌌  
@@ -16,9 +16,15 @@ pip install -r requirements.txt
 python manage.py runserver
 - Start using the app:
     - create your account
-    - browse information about astronomical objects, galaxies, events
+    - browse information about astronomical objects, galaxies, celestial events
     - add your notes about astronomical observations
- 
+
+Getting Started 🚀  
+Once installed, you can:  
+- **Register** to create your personal astronomy journal
+- **Explore** astronomical objects, galaxies, and celestial events
+- **Add observations** to track your discoveries
+
 Authors ✨  
 - **Kamila** - Developer and creator of NebulaNotes 🌌  
 
