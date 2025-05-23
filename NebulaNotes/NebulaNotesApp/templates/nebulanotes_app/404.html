@@ -1,9 +1,9 @@
 {% extends 'nebulanotes_app/base.html' %}
 
-
 {% block content %}
-    <h1>Oops! Astronomical Object Not Found 🚀</h1>
-<p>It seems that you're looking for a star yet not discovered!</p>
-<a href="{% url 'objects-list' %}">Return to the list of astronomical objects</a>
-
+    <div class="text-center mt-5">
+        <h1 class="display-4">Oops! 🚀</h1>
+        <p class="lead">We couldn't find what you're looking for. Are you searching for a star yet to be discovered?</p>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Return to Home 🌍</a>
+    </div>
 {% endblock %}

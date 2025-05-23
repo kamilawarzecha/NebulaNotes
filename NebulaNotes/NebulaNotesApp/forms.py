@@ -1,7 +1,8 @@
 from datetime import date, datetime
 from django.utils.timezone import now
 
-
+# from django.forms import fields, forms
+# from formset.widgets import DateTimeInput
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -51,6 +52,8 @@ class GalaxyForm(forms.ModelForm):
 
 
 class EventForm(forms.ModelForm):
+    date = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'})    )
     class Meta:
         model = Event
         fields = ['name', 'date', 'description', 'related_objects']
@@ -64,6 +67,7 @@ def validate_past_date(value):
 class ObservationForm(forms.ModelForm):
     observation_date = forms.DateTimeField(
     widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+    input_formats=['%Y-%m-%dT%H:%M'],
     validators=[validate_past_date]
     )
 

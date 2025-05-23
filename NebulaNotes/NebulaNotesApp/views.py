@@ -18,6 +18,10 @@ from NebulaNotesApp.models import AstronomicalObject, AstronomicalObjectType, Ga
 
 User = get_user_model()
 
+class Custom404View(View):
+    """ A view that handles 404 errors"""
+    def get(self, request, *args, **kwargs):
+        return render(request, 'nebulanotes_app/404.html', status=404)
 
 class UserLoginView(View):
     """ A view that displays the login form and handles the login action"""
@@ -84,10 +88,24 @@ class ObjectCreateView(CreateView):
 
 
 class ObjectsListView(ListView):
-    """ A view that displays a list of astronomical objects"""
+    """ A view that displays a filtered list of astronomical objects """
     model = AstronomicalObject
     template_name = 'nebulanotes_app/astronomicalobject_list.html'
     context_object_name = 'objects'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        type_id = self.request.GET.get('type', '')  # Pobranie wartości z formularza
+
+        if type_id:
+            queryset = queryset.filter(type__id=type_id)  # Filtrowanie po typie
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["types"] = AstronomicalObjectType.objects.all()  # Pass object types to the template
+        return context
 
 
 class ObjectDetailView(DetailView):
@@ -147,6 +165,9 @@ class ObjectTypesDetailView(DetailView):
     template_name = 'nebulanotes_app/object_type_detail.html'
     context_object_name = 'object_type'
 
+    def get_object_or_404(self):
+        return get_object_or_404(AstronomicalObjectType, pk=self.kwargs['pk'])
+
 
 class ObjectTypeUpdateView(UpdateView):
     """ A view that displays a single astronomical object type and lets the user update its name"""
@@ -156,12 +177,17 @@ class ObjectTypeUpdateView(UpdateView):
     form_class = ObjectTypeForm
     success_url = reverse_lazy("list-object-types")
 
+    def get_object_or_404(self):
+        return get_object_or_404(AstronomicalObjectType, pk=self.kwargs['pk'])
 
 class ObjectTypeDeleteView(DeleteView):
     """ A view that displays a single astronomical object type and lets the user delete it"""
     model = AstronomicalObjectType
     template_name = 'nebulanotes_app/object_type_delete.html'
     context_object_name = 'object_type'
+
+    def get_object_or_404(self):
+        return get_object_or_404(AstronomicalObjectType, pk=self.kwargs['pk'])
 
 
 class GalaxyCreateView(CreateView):
@@ -189,6 +215,9 @@ class GalaxyDetailView(DetailView):
     template_name = 'nebulanotes_app/galaxy_detail.html'
     context_object_name = 'galaxy'
 
+    def get_object_or_404(self):
+        return get_object_or_404(Galaxy, pk=self.kwargs['pk'])
+
 
 class GalaxyUpdateView(UpdateView):
     """ A view that displays a single galaxy and lets the user update its name"""
@@ -198,6 +227,9 @@ class GalaxyUpdateView(UpdateView):
     form_class = GalaxyForm
     success_url = reverse_lazy("list-galaxies")
 
+    def get_object_or_404(self):
+        return get_object_or_404(Galaxy, pk=self.kwargs['pk'])
+
 
 class GalaxyDeleteView(DeleteView):
     """ A view that displays a single galaxy and lets the user delete it"""
@@ -205,6 +237,8 @@ class GalaxyDeleteView(DeleteView):
     template_name = 'nebulanotes_app/galaxy_delete.html'
     context_object_name = 'galaxy'
 
+    def get_object_or_404(self):
+        return get_object_or_404(Galaxy, pk=self.kwargs['pk'])
 
 class EventCreateView(CreateView):
     """ A view that displays the form for creating a new event"""
@@ -220,6 +254,16 @@ class EventsListView(ListView):
     template_name = 'nebulanotes_app/event_list.html'
     context_object_name = 'events'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        sort_order = self.request.GET.get("sort", "asc")  # oldest first
+
+        if sort_order == "desc":
+            queryset = queryset.order_by("-date")  # newest first
+        else:
+            queryset = queryset.order_by("date")  # oldest first
+
+        return queryset
 
 class EventDetailView(DetailView):
     """ A view that displays a single event and its objects"""
@@ -276,6 +320,9 @@ class ObservationsListView(LoginRequiredMixin, ListView):
     template_name = 'nebulanotes_app/observation_list.html'
     context_object_name = 'observations'
 
+    def get_queryset(self):
+        return Observation.objects.filter(user=self.request.user).order_by("observation_date")
+
 
 class ObservationDetailView(LoginRequiredMixin, DetailView):
     """ A view that displays a single observation and its objects"""
@@ -283,6 +330,8 @@ class ObservationDetailView(LoginRequiredMixin, DetailView):
     template_name = 'nebulanotes_app/observation_detail.html'
     context_object_name = 'observation'
 
+    def get_object_or_404(self):
+        return get_object_or_404(Observation, pk=self.kwargs['pk'])
 
 class ObservationUpdateView(LoginRequiredMixin, UpdateView):
     """ A view that displays a single observation and lets the user update it"""
@@ -292,6 +341,9 @@ class ObservationUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ObservationForm
     success_url = reverse_lazy("list-observations")
 
+    def get_object_or_404(self):
+        return get_object_or_404(Observation, pk=self.kwargs['pk'])
+
 
 class ObservationDeleteView(LoginRequiredMixin, DeleteView):
     """ A view that displays a single observation and lets the user delete it"""
@@ -299,3 +351,6 @@ class ObservationDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'nebulanotes_app/observation_delete.html'
     context_object_name = 'observation'
     success_url = reverse_lazy("list-observations")
+
+    def get_object_or_404(self):
+        return get_object_or_404(Observation, pk=self.kwargs['pk'])

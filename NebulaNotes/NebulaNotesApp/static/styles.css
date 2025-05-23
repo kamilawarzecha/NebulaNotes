@@ -25,15 +25,17 @@ body {
     text-decoration: underline;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #343a40;
-    padding: 10px;
-    color: #6f94c6;
-    text-align: center;
-}
+/*.footer {*/
+/*    position: relative;*/
+/*    z-index: 1;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    background-color: #343a40;*/
+/*    padding: 10px;*/
+/*    color: rgba(242, 245, 248, 0.9);*/
+/*    text-align: center;*/
+/*    margin-top: 100px;*/
+/*}*/
 
 form {
     background-color: #ffffff;
@@ -69,10 +71,6 @@ button:hover {
     transition: 0.3s;
 }
 
-.list-group-item:hover {
-    background-color: #e9ecef;
-}
-
 h5 {
     color: #0056b3;
     font-weight: bold;
@@ -104,3 +102,15 @@ h5 {
     text-decoration: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: auto;
+    overflow-y: auto;
+}
+
+.column-gap-md-0 {
+    column-gap: 0;
+}

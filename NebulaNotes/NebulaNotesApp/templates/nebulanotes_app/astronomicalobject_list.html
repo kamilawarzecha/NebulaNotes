@@ -5,7 +5,36 @@
         {{ block.super }}
     {% endwith %}
 
-<h5>
-    <a href="{% url 'create-object' %}" class="btn btn-success">Add a new object</a>
-</h5>
+    <form method="GET" class="mb-3">
+    <label for="type" class="form-label">Filter by object type:</label>
+    <select name="type" id="type" class="form-select">
+        <option value="">-- All Types --</option>
+        {% for type in types %}
+            <option value="{{ type.id }}" {% if request.GET.type == type.id|stringformat:"s" %}selected{% endif %}>
+                {{ type.name }}
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary mt-2">Apply Filter</button>
+</form>
+
+
+    <h5>
+        <a href="{% url 'create-object' %}" class="btn btn-success">Add a new object</a>
+    </h5>
 {% endblock %}
+
+
+
+
+{#{% extends "nebulanotes_app/list_template.html" %}#}
+{##}
+{#{% block content %}#}
+{#    {% with title="Astronomical Objects 🌠" objects=objects %}#}
+{#        {{ block.super }}#}
+{#    {% endwith %}#}
+{##}
+{#<h5>#}
+{#    <a href="{% url 'create-object' %}" class="btn btn-success">Add a new object</a>#}
+{#</h5>#}
+{#{% endblock %}#}

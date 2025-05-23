@@ -13,6 +13,16 @@
             {% endfor %}
         </ul>
     {% endwith %}
+
+    <form method="GET" class="mb-3">
+    <label for="sort" class="form-label">Sort by date:</label>
+    <select name="sort" id="sort" class="form-select">
+        <option value="asc" {% if request.GET.sort == "asc" %}selected{% endif %}>Oldest First</option>
+        <option value="desc" {% if request.GET.sort == "desc" %}selected{% endif %}>Newest First</option>
+    </select>
+    <button type="submit" class="btn btn-primary mt-2">Apply Sort</button>
+</form>
+
 <h5>
     <a href="{% url 'create-event' %}" class="btn btn-success">Add a new event</a>
 </h5>
