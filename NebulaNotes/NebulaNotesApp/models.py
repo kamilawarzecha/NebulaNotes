@@ -42,12 +42,12 @@ class AstronomicalObject(models.Model):
         return f"{self.name} ({self.type})"
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    favorite_objects = models.ManyToManyField(AstronomicalObject, blank=True)
-
-    def __str__(self):
-        return self.user.username
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     favorite_objects = models.ManyToManyField(AstronomicalObject, blank=True)
+#
+#     def __str__(self):
+#         return self.user.username
 
 
 class Event(models.Model):
@@ -62,7 +62,7 @@ class Event(models.Model):
 
 class Observation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    astronomical_object = models.ForeignKey(AstronomicalObject, on_delete=models.CASCADE, null=True, blank=True)
+    astronomical_object = models.ForeignKey(AstronomicalObject, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
     observation_date = models.DateTimeField()
     location = models.CharField(max_length=255, blank=True)

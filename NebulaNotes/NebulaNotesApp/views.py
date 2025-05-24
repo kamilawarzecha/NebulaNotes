@@ -41,12 +41,8 @@ class UserLoginView(View):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
-            if user is None:
-                form.add_error(None, "Login failed")
-                return render(request, self.template_name, context)
-            else:
-                login(request, user)
-                return redirect('home')
+            login(request, user)
+            return redirect('home')
         else:
             return render(request, self.template_name, context)
 
@@ -84,7 +80,7 @@ class ObjectCreateView(CreateView):
     model = AstronomicalObject
     form_class = ObjectForm
     template_name = 'nebulanotes_app/astronomicalobject_create.html'
-    success_url = reverse_lazy("create-object")
+    success_url = reverse_lazy("list-objects")
 
 
 class ObjectsListView(ListView):
@@ -123,7 +119,9 @@ class ObjectUpdateView(UpdateView):
     template_name = 'nebulanotes_app/astronomicalobject_update.html'
     context_object_name = 'object'
     form_class = ObjectForm
-    success_url = reverse_lazy("list-objects")
+
+    def get_success_url(self):
+        return reverse_lazy("object-detail", kwargs={"pk": self.kwargs["pk"]})
 
     def get_object(self):
         return get_object_or_404(AstronomicalObject, pk=self.kwargs['pk'])
@@ -145,7 +143,7 @@ class ObjectTypeCreateView(CreateView):
     model = AstronomicalObjectType
     form_class = ObjectTypeForm
     template_name = 'nebulanotes_app/object_type_create.html'
-    success_url = reverse_lazy("create-object-type")
+    success_url = reverse_lazy("list-object-types")
 
     def form_valid(self, form):
         messages.success(self.request, "Object type was saved to the database!")
@@ -175,7 +173,9 @@ class ObjectTypeUpdateView(UpdateView):
     template_name = 'nebulanotes_app/object_type_update.html'
     context_object_name = 'object_type'
     form_class = ObjectTypeForm
-    success_url = reverse_lazy("list-object-types")
+
+    def get_success_url(self):
+        return reverse_lazy("object-type-detail", kwargs={"pk": self.kwargs["pk"]})
 
     def get_object_or_404(self):
         return get_object_or_404(AstronomicalObjectType, pk=self.kwargs['pk'])
@@ -185,6 +185,7 @@ class ObjectTypeDeleteView(DeleteView):
     model = AstronomicalObjectType
     template_name = 'nebulanotes_app/object_type_delete.html'
     context_object_name = 'object_type'
+    success_url = reverse_lazy("list-object-types")
 
     def get_object_or_404(self):
         return get_object_or_404(AstronomicalObjectType, pk=self.kwargs['pk'])
@@ -195,7 +196,7 @@ class GalaxyCreateView(CreateView):
     model = Galaxy
     form_class = GalaxyForm
     template_name = 'nebulanotes_app/galaxy_create.html'
-    success_url = reverse_lazy("create-galaxy")
+    success_url = reverse_lazy("list-galaxies")
 
     def form_valid(self, form):
         messages.success(self.request, "Galaxy was saved to the database!")
@@ -225,7 +226,9 @@ class GalaxyUpdateView(UpdateView):
     template_name = 'nebulanotes_app/galaxy_update.html'
     context_object_name = 'galaxy'
     form_class = GalaxyForm
-    success_url = reverse_lazy("list-galaxies")
+
+    def get_success_url(self):
+        return reverse_lazy("galaxy-detail", kwargs={"pk": self.kwargs["pk"]})
 
     def get_object_or_404(self):
         return get_object_or_404(Galaxy, pk=self.kwargs['pk'])
@@ -236,6 +239,7 @@ class GalaxyDeleteView(DeleteView):
     model = Galaxy
     template_name = 'nebulanotes_app/galaxy_delete.html'
     context_object_name = 'galaxy'
+    success_url = reverse_lazy("list-galaxies")
 
     def get_object_or_404(self):
         return get_object_or_404(Galaxy, pk=self.kwargs['pk'])
@@ -245,7 +249,8 @@ class EventCreateView(CreateView):
     model = Event
     form_class = EventForm
     template_name = 'nebulanotes_app/event_create.html'
-    success_url = reverse_lazy("create-event")
+
+    success_url = reverse_lazy("list-events")
 
 
 class EventsListView(ListView):
@@ -281,7 +286,9 @@ class EventUpdateView(UpdateView):
     template_name = 'nebulanotes_app/event_update.html'
     context_object_name = 'event'
     form_class = EventForm
-    success_url = reverse_lazy("list-events")
+
+    def get_success_url(self):
+        return reverse_lazy("event-detail", kwargs={"pk": self.kwargs["pk"]})
 
     def get_object(self):
         return get_object_or_404(Event, pk=self.kwargs['pk'])
@@ -305,7 +312,7 @@ class ObservationCreateView(LoginRequiredMixin, CreateView):
     model = Observation
     form_class = ObservationForm
     template_name = 'nebulanotes_app/observation_create.html'
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("list-observations")
 
     def form_valid(self, form):
         observation = form.save(commit=False)
@@ -339,7 +346,9 @@ class ObservationUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'nebulanotes_app/observation_update.html'
     context_object_name = 'observation'
     form_class = ObservationForm
-    success_url = reverse_lazy("list-observations")
+
+    def get_success_url(self):
+        return reverse_lazy("observation-detail", kwargs={"pk": self.kwargs["pk"]})
 
     def get_object_or_404(self):
         return get_object_or_404(Observation, pk=self.kwargs['pk'])

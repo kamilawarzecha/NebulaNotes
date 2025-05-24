@@ -11,8 +11,23 @@ from django.http import request
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(required=True)
+    password = forms.CharField(required=True, widget=forms.PasswordInput)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+
+        if username and password:
+            user = User.objects.filter(username=username)
+            if not user.exists():
+                self.add_error("username", "User does not exist!")
+            else:
+                user = user.first()
+                if not user.check_password(password):
+                    self.add_error("password", "Password is incorrect!")
+
 
 
 class UserCreateForm(forms.ModelForm):

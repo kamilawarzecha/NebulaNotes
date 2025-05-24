@@ -14,5 +14,13 @@
     </div>
 {% endfor %}
 
-    <button type="submit" class="btn btn-primary">Add</button>
+<button type="submit" class="btn btn-primary">
+    {% if request.path == '/login/' %}
+        Log in
+    {% else %}
+        Add
+    {% endif %}
+</button>
+
+
 </form>

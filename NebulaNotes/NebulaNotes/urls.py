@@ -58,6 +58,7 @@ from NebulaNotesApp.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', HomeView.as_view(), name="home"),
+    path('', HomeView.as_view(), name="home"),
     path('login/', UserLoginView.as_view(), name="login"),
     path('logout/', UserLogoutView.as_view(), name="logout"),
     path('register/', UserCreateView.as_view(), name="register"),

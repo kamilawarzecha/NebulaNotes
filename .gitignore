@@ -1,0 +1,21 @@
+## Pliki środowiska wirtualnego
+#.venv/
+#.env
+#
+##pliki konfiguracyjne pycharm
+#.idea
+#
+## Cache Python
+*pycache*
+#*.pyc
+#*.pyo
+#
+#
+## Pliki statyczne wygenerowane automatycznie
+#staticfiles/
+#media/
+#
+## Django logs & konfiguracja
+#debug.log
+#!/NebulaNotes/requirements.txt
+#
