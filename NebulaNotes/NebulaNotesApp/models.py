@@ -42,14 +42,6 @@ class AstronomicalObject(models.Model):
         return f"{self.name} ({self.type})"
 
 
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     favorite_objects = models.ManyToManyField(AstronomicalObject, blank=True)
-#
-#     def __str__(self):
-#         return self.user.username
-
-
 class Event(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateField()
