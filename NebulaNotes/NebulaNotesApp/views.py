@@ -1,10 +1,6 @@
-from datetime import date
-
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -91,16 +87,16 @@ class ObjectsListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        type_id = self.request.GET.get('type', '')  # Pobranie wartości z formularza
+        type_id = self.request.GET.get('type', '')
 
         if type_id:
-            queryset = queryset.filter(type__id=type_id)  # Filtrowanie po typie
+            queryset = queryset.filter(type__id=type_id)
 
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["types"] = AstronomicalObjectType.objects.all()  # Pass object types to the template
+        context["types"] = AstronomicalObjectType.objects.all()
         return context
 
 
@@ -114,7 +110,7 @@ class ObjectDetailView(DetailView):
 
 
 class ObjectUpdateView(UpdateView):
-    """ A view that displays a single astronomical object and  lets the user update information about it"""
+    """ A view that displays a single astronomical object and lets the user update information about it"""
     model = AstronomicalObject
     template_name = 'nebulanotes_app/astronomicalobject_update.html'
     context_object_name = 'object'

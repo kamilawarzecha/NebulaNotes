@@ -3,8 +3,8 @@ A web-based application for tracking astronomical observations, galaxies, and ce
 
 Features 🌌  
 - Add and manage astronomical observations 🔭  
-- View detailed information on celestial objects 🪐  
-- Filter and sort events based on type 📅  
+- View and add detailed information on celestial objects and galaxies 🪐
+- Sort events based on date 📅  
 - Intuitive UI powered by Django and Bootstrap 🎨  
 
 Installation 🛠  
