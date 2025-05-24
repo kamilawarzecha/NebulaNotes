@@ -17,7 +17,9 @@
 <button type="submit" class="btn btn-primary">
     {% if request.path == '/login/' %}
         Log in
-    {% else %}
+    {% elif request.path == '/register/' %}
+        Register
+        {% else %}
         Add
     {% endif %}
 </button>
