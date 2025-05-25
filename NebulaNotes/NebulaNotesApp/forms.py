@@ -63,7 +63,7 @@ class ObjectTypeForm(forms.ModelForm):
 class GalaxyForm(forms.ModelForm):
     class Meta:
         model = Galaxy
-        fields = ['name','type','description', 'image']
+        fields = ['name','type','description']
 
 
 class EventForm(forms.ModelForm):
